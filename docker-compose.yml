@@ -1,6 +1,20 @@
 ---
 version: "3"
 services:
+  kpow:
+    image: factorhouse/kpow-ce:latest
+    depends_on:
+      - broker
+    ports:
+      - "3000:3000"
+    env_file:
+      - $HOME/.config/kpow/kpow.env
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 1028M
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.0
     container_name: zookeeper
